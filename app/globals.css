@@ -54,7 +54,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-geist-karla);
-    background: #fff !important;
+    background-color: var(--background);
   }
 
   select {
