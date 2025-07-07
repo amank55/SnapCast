@@ -670,4 +670,13 @@
       }
     }
   }
+
+  .header-container > article {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  .header-container > article > h1 {
+    color: #171717 !important;
+    font-weight: 800 !important;
+  }
 }

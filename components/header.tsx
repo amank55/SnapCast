@@ -5,7 +5,7 @@ import { ICONS } from '@/constants'
 const Header = ({subHeader,title,userImg}: SharedHeaderProps) => {
   return (
     <header className='header'>
-        <section className='header-container'>
+        <section className="header-container items-start">
             <div className='details'>
             {userImg &&(
                 <Image src={userImg ||'/assets/images/dummy.jpg'} alt ="user" width = {66} height = {66} className="rounded-full"/>
@@ -13,9 +13,9 @@ const Header = ({subHeader,title,userImg}: SharedHeaderProps) => {
             </div>
 
 
-            <article>
+            <article className="flex-1 text-left">
                 <p>{subHeader}</p>
-                <h1>{title}</h1>
+                <h1 className="text-dark-200 text-3xl">{title}</h1>
             </article>
 
             <aside>
