@@ -9,7 +9,17 @@ const page = () => {
       <h1 className='text-3xl font-karla underline'>Name aman Kumar       
       </h1>
 
-      <VideoCard/>
+      <VideoCard
+        _id="1"
+        title="SnapChat Message – 30 June 2025"
+        thumbnail="/assets/samples/thumbnail (1).png"
+        createdAt="2025-05-01 06:25:54.437"
+        userImg="/assets/images/jason.png"
+        username="Jason"
+        views={10}
+        visibility="public"
+        duration={156}
+      />
       </main>
   )
 }
