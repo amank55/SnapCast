@@ -1,4 +1,5 @@
 import Header from '@/components/header'
+import VideoCard from '@/components/VideoCard'
 import React from 'react'
 
 const page = () => {
@@ -7,6 +8,8 @@ const page = () => {
       <Header title="All videos" subHeader="Public Library"/>
       <h1 className='text-3xl font-karla underline'>Name aman Kumar       
       </h1>
+
+      <VideoCard/>
       </main>
   )
 }
