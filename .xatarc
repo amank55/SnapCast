@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Aman-Kumar-s-workspace-tleg42.eu-central-1.xata.sh/db/jsm_snapcast",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
