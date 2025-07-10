@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
+import { authClient } from "@/lib/auth-client";
 
 
 const SignIn = () => {
+
+  const handleSignIn = async () => {
+    return await authClient.signIn.social({ provider: 'google' });
+  };
+  
   return (
     <main className="sign-in">
       <aside className="testimonial">
@@ -70,11 +75,7 @@ const SignIn = () => {
           </p>
 
           <button
-            onClick={async () => {
-              return await authClient.signIn.social({
-                provider: "google",
-              });
-            }}
+           onClick={handleSignIn}
           >
             <Image
               src="/assets/icons/google.svg"
