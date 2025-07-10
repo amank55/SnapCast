@@ -2,14 +2,10 @@
 import { buildClient } from "@xata.io/client";
 import type {
   BaseClientOptions,
-  SchemaInference,
-  XataRecord,
 } from "@xata.io/client";
 
 const tables = [] as const;
 
-export type SchemaTables = typeof tables;
-export type InferredTypes = SchemaInference<SchemaTables>;
 
 export type DatabaseSchema = {};
 
@@ -18,11 +14,13 @@ const DatabaseClient = buildClient();
 const defaultOptions = {
   databaseURL:
     "https://Aman-Kumar-s-workspace-tleg42.eu-central-1.xata.sh/db/jsm_snapcast",
+    apiKey: process.env.XATA_API_KEY,
+  branch: "main",
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
   constructor(options?: BaseClientOptions) {
-    super({ ...defaultOptions, ...options }, tables);
+    super({ ...defaultOptions, ...options });
   }
 }
 
