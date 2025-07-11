@@ -56,7 +56,7 @@ const SignIn = () => {
             </article>
           </section>
         </div>
-        <p>© Snapcast 2025</p>
+        <p> @ Snapcast 2025</p>
       </aside>
       <aside className="google-sign-in">
         <section>
