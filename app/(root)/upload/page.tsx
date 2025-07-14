@@ -102,6 +102,14 @@ const UploadPage = () => {
         return;
       }
 
+      // TODO: Add your upload logic here (get upload URLs, upload files, save details, redirect, etc.)
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError("An error occurred during upload.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="wrapper-md upload-page">
