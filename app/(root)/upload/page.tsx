@@ -6,6 +6,7 @@ import FormField from "@/components/FormField";
 import FileInput from "@/components/FileInput";
 import { useFileInput } from "@/lib/hooks/useFileInput";
 import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "@/constants";
+import { getVideoUploadUrl, getThumbnailUploadUrl, saveVideoDetails } from "@/lib/actions/video";
 
 const uploadFileToBunny = (
   file: File,
@@ -94,18 +95,42 @@ const UploadPage = () => {
     try {
       if (!video.file || !thumbnail.file) {
         setError("Please upload video and thumbnail files.");
+        setIsSubmitting(false);
         return;
       }
 
       if (!formData.title || !formData.description) {
         setError("Please fill in all required fields.");
+        setIsSubmitting(false);
         return;
       }
 
-      // TODO: Add your upload logic here (get upload URLs, upload files, save details, redirect, etc.)
-    } catch (error) {
+      // 1. Get video upload URL
+      const { videoId, uploadUrl, accessKey } = await getVideoUploadUrl();
+      // 2. Upload video file
+      await uploadFileToBunny(video.file, uploadUrl, accessKey);
+
+      // 3. Get thumbnail upload URL
+      const { uploadUrl: thumbnailUploadUrl, cdnUrl: thumbnailCdnUrl, accessKey: thumbnailAccessKey } = await getThumbnailUploadUrl(videoId);
+      // 4. Upload thumbnail file
+      await uploadFileToBunny(thumbnail.file, thumbnailUploadUrl, thumbnailAccessKey);
+
+      // 5. Save video details
+      await saveVideoDetails({
+        videoId,
+        title: formData.title,
+        description: formData.description,
+        thumbnailUrl: thumbnailCdnUrl,
+        tags: formData.tags,
+        visibility: formData.visibility,
+        duration: videoDuration,
+      });
+
+      // 6. Redirect to homepage
+      router.push("/");
+    } catch (error: any) {
       console.error("Error submitting form:", error);
-      setError("An error occurred during upload.");
+      setError(error.message || "An error occurred during upload.");
     } finally {
       setIsSubmitting(false);
     }
